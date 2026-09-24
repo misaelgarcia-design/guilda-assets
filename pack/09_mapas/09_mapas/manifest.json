@@ -1,0 +1,94 @@
+{
+  "secao": "09_mapas — mapas de tiles jogáveis",
+  "grade": {
+    "tile": 16,
+    "colunas": 20,
+    "linhas": 13,
+    "resolucao_do_mapa": "320×208 px"
+  },
+  "tileset": {
+    "arquivo": "tileset.png por território",
+    "layout": "8 colunas × 4 linhas de células 16×16, alinhadas na grade, sem sobreposição",
+    "indice": "coluna + linha × 8",
+    "celulas": {
+      "3": "solo",
+      "16": "caminho de prancha",
+      "17": "caminho de pedra",
+      "27": "abismo",
+      "0-2": "vegetação cheia, 3 variações",
+      "4-7": "borda de vegetação (grama ao S / N / L / O) com recorte orgânico",
+      "8-11": "canto externo de vegetação",
+      "12-15": "canto interno (península de solo)",
+      "18-19": "vegetação com detalhe do tema",
+      "20-23": "muro: topo, corpo, sombra projetada, quina",
+      "24-26": "piso da arena: centro, borda norte, anel de acento",
+      "28-31": "acentos do solo (poça, pedrisco, refugo do tema)"
+    },
+    "autotile": "as bordas 4-15 são escolhidas pelos 4 vizinhos ortogonais e pelas 4 diagonais; a máscara de vegetação de cada território está documentada no gerador tools/gen_tiles2.js"
+  },
+  "objetos": {
+    "pasta": "objetos/",
+    "formato": "PNG com transparência e contorno escuro",
+    "tamanhos": "múltiplos de 16 (16×16 a 64×80)",
+    "ancora": "canto superior esquerdo; y pode ser decimal para encaixar o pé do objeto",
+    "sombra": "a sombra de contato é desenhada em runtime (elipse sob o objeto), não está no PNG"
+  },
+  "planta": {
+    "arquivo": "planta.json por território",
+    "campos": {
+      "chao": "matriz 13×20 de índices do tileset",
+      "objetos": "lista {arquivo, x, y} em tiles",
+      "solidos": "células [x,y] bloqueadas — borda externa, área do boss (colunas 8-11, linhas 2-3) e pegada dos objetos",
+      "postos": "analises, distracao, fadiga, mascaramento, apoio, loja",
+      "ferreiro": "[3,10]",
+      "spawn": "[10,11]",
+      "boss": "ancorado ao norte, centro x=10, pés na linha 3.7"
+    }
+  },
+  "preview": "preview.png — o mapa renderizado (chão + objetos), só para conferência",
+  "territorios": [
+    {
+      "ordem": 1,
+      "pasta": "01_pantano_da_pendencia",
+      "boss": "O Prazo",
+      "paleta": "grama seca e madeira molhada, detalhe em poça",
+      "objetos": 8
+    },
+    {
+      "ordem": 2,
+      "pasta": "02_corredor_das_interrupcoes",
+      "boss": "Cara Distração",
+      "paleta": "azul-petróleo com acento ciano, detalhe em grade luminosa",
+      "objetos": 5
+    },
+    {
+      "ordem": 3,
+      "pasta": "03_salao_das_fachadas",
+      "boss": "Máscara",
+      "paleta": "ameixa e magenta com creme, detalhe em tábua de palco",
+      "objetos": 5
+    },
+    {
+      "ordem": 4,
+      "pasta": "04_torre_do_encerramento",
+      "boss": "Senhor Sinistro",
+      "paleta": "pedra arroxeada, vinho e ouro, detalhe em mosaico",
+      "objetos": 5
+    },
+    {
+      "ordem": 5,
+      "pasta": "05_sala_do_espelho",
+      "boss": "O Jogador Corrompido",
+      "paleta": "violeta com reflexo lilás, detalhe em laje de espelho",
+      "objetos": 5
+    }
+  ],
+  "como_desenhar": [
+    "1. Carregue tileset.png e recorte células de 16×16 pelo índice.",
+    "2. Percorra chao[linha][coluna] e desenhe cada célula em (coluna×16, linha×16).",
+    "3. Desenhe objetos na ordem da lista, em (x×16, y×16) — eles já saem na frente do chão.",
+    "4. Coloque o boss em x=10 com os pés na linha 3.7, usando a folha 2_idle da pasta 04_bosses.",
+    "5. Bloqueie o movimento nas células de solidos; postos e ferreiro são gatilhos de interação."
+  ],
+  "arte": "solo escuro com vegetação em massas de recorte orgânico, linha de luz no topo da grama e sombra colada na base — a mesma leitura em todos os cinco, só a paleta muda"
+}
