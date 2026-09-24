@@ -1,0 +1,10 @@
+[LICENSE]
+You are allowed to:
+- Modify the asset as much as you want.
+- Use for commercial and non-commercial project.
+- Not give credit but is really appreciated.
+
+You are NOT allowed to:
+- Resell, repackage, or redistribute the asset, even if modified.
+- Use the asset in Crypto/NFT projects.
+- Claim the asset yours.
